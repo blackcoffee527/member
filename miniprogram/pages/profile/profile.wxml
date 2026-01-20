@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="flex flex-col items-center mb-6">
+    <view class="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-lg" style="width: 180rpx; height: 180rpx;">
+      <text style="font-size: 80rpx;">👴</text>
+    </view>
+    <text class="text-2xl font-bold text-gray-800">张建国</text>
+    <text class="text-gray-500 mt-1">76岁 | 党员</text>
+  </view>
+
+  <view class="card">
+    <view class="flex justify-between py-3 border-b border-gray-100">
+        <text class="text-gray-500">手机号码</text>
+        <text class="text-gray-800">13800138000</text>
+    </view>
+    <view class="flex justify-between py-3 border-b border-gray-100">
+        <text class="text-gray-500">居住地址</text>
+        <text class="text-gray-800">幸福社区 3栋 2单元 101</text>
+    </view>
+    <view class="flex justify-between py-3 border-b border-gray-100">
+        <text class="text-gray-500">紧急联系人</text>
+        <text class="text-gray-800">张伟 (13912345678)</text>
+    </view>
+    <view class="flex justify-between py-3">
+        <text class="text-gray-500">过敏史</text>
+        <text class="text-red-500">青霉素</text>
+    </view>
+  </view>
+
+  <view class="mt-6">
+    <button class="w-full bg-white text-red-500 border py-3 rounded-xl" bindtap="logout">退出登录</button>
+  </view>
+</view>

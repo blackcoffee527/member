@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>订单支付 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="orders.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">确认支付</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4 space-y-6">
+
+        <!-- 订单金额 -->
+        <div class="card flex flex-col items-center justify-center py-8">
+            <p class="text-stone-500 mb-2">支付金额</p>
+            <h2 class="text-4xl font-bold text-stone-800">¥ <span id="payAmount">0.00</span></h2>
+            <p class="text-warm-primary text-sm mt-2 bg-orange-50 px-3 py-1 rounded-full">剩余支付时间 14:59</p>
+        </div>
+
+        <!-- 支付方式 -->
+        <div class="card">
+            <h3 class="font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">选择支付方式</h3>
+            
+            <div class="space-y-4">
+                <!-- 微信支付 -->
+                <label class="flex items-center justify-between p-2 rounded-lg border border-stone-200 cursor-pointer active:bg-orange-50">
+                    <div class="flex items-center">
+                        <i class="fab fa-weixin text-green-500 text-3xl mr-3"></i>
+                        <span class="font-bold text-stone-800">微信支付</span>
+                    </div>
+                    <input type="radio" name="payment" value="wechat" class="w-5 h-5 text-warm-primary" checked>
+                </label>
+
+                <!-- 支付宝 -->
+                <label class="flex items-center justify-between p-2 rounded-lg border border-stone-200 cursor-pointer active:bg-orange-50">
+                    <div class="flex items-center">
+                        <i class="fab fa-alipay text-blue-500 text-3xl mr-3"></i>
+                        <span class="font-bold text-stone-800">支付宝</span>
+                    </div>
+                    <input type="radio" name="payment" value="alipay" class="w-5 h-5 text-warm-primary">
+                </label>
+
+                <!-- 银行卡 -->
+                <label class="flex items-center justify-between p-2 rounded-lg border border-stone-200 cursor-pointer active:bg-orange-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-credit-card text-yellow-500 text-3xl mr-3"></i>
+                        <span class="font-bold text-stone-800">银行卡支付</span>
+                    </div>
+                    <input type="radio" name="payment" value="card" class="w-5 h-5 text-warm-primary">
+                </label>
+
+                <!-- 余额支付 -->
+                <label class="flex items-center justify-between p-2 rounded-lg border border-stone-200 cursor-pointer active:bg-orange-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-wallet text-orange-500 text-3xl mr-3"></i>
+                        <div>
+                            <span class="font-bold text-stone-800">余额支付</span>
+                            <p class="text-xs text-stone-500">当前余额: ¥1,250.00</p>
+                        </div>
+                    </div>
+                    <input type="radio" name="payment" value="balance" class="w-5 h-5 text-warm-primary">
+                </label>
+
+                <!-- 找人代付 -->
+                <label class="flex items-center justify-between p-2 rounded-lg border border-orange-100 cursor-pointer active:bg-orange-100 bg-orange-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-friends text-orange-600 text-3xl mr-3"></i>
+                        <div>
+                            <span class="font-bold text-stone-800">找人代付</span>
+                            <p class="text-xs text-stone-500">发送给子女支付</p>
+                        </div>
+                    </div>
+                    <input type="radio" name="payment" value="help" class="w-5 h-5 text-warm-primary">
+                </label>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部支付按钮 -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-stone-200 z-20 flex flex-col space-y-2">
+        <button id="payBtn" class="w-full bg-warm-primary text-white py-3 rounded-xl text-xl font-bold shadow-lg" onclick="handlePayment()">
+            立即支付
+        </button>
+    </div>
+
+    <script>
+        // 获取订单金额
+        const amount = localStorage.getItem('cartTotal') || '0.00';
+        document.getElementById('payAmount').innerText = amount;
+
+        function handlePayment() {
+            const method = document.querySelector('input[name="payment"]:checked').value;
+            const payAmount = parseFloat(document.getElementById('payAmount').innerText);
+            
+            if (method === 'balance') {
+                const balance = 1250.00;
+                if (balance >= payAmount) {
+                    alert('余额支付成功！');
+                    window.location.href = 'health.html';
+                } else {
+                    alert('余额不足，请选择其他支付方式或充值');
+                }
+            } else if (method === 'help') {
+                // 找人代付逻辑
+                showShareModal();
+            } else {
+                // 正常支付逻辑
+                alert('支付成功！正在跳转订单详情...');
+                window.location.href = 'health.html'; // 支付成功去我的页面看订单
+            }
+        }
+
+        function showShareModal() {
+            // 模拟分享弹窗
+            const shareUrl = "http://care-center.com/pay/share/123456";
+            const msg = `已生成代付链接：\n${shareUrl}\n\n请点击“发送”分享给您的子女。`;
+            
+            if (confirm(msg)) {
+                alert('已发送给【儿子-张小明】\n等待对方支付中...');
+                window.location.href = 'health.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>商城订单 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="index.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">商城订单</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <!-- 双栏布局容器 -->
+    <div class="shop-container">
+        
+        <!-- 左侧分类侧边栏 -->
+        <aside class="shop-sidebar">
+            <div class="shop-sidebar-item active" onclick="switchCategory(this, 'meal')">
+                <i class="fas fa-utensils text-2xl mb-1 block"></i>
+                营养配餐
+            </div>
+            <div class="shop-sidebar-item" onclick="switchCategory(this, 'veg')">
+                <i class="fas fa-carrot text-2xl mb-1 block"></i>
+                生鲜果蔬
+            </div>
+            <div class="shop-sidebar-item" onclick="switchCategory(this, 'daily')">
+                <i class="fas fa-toilet-paper text-2xl mb-1 block"></i>
+                日用百货
+            </div>
+            <div class="shop-sidebar-item" onclick="switchCategory(this, 'service')">
+                <i class="fas fa-hands-helping text-2xl mb-1 block"></i>
+                上门服务
+            </div>
+            <div class="shop-sidebar-item" onclick="switchCategory(this, 'medical')">
+                <i class="fas fa-first-aid text-2xl mb-1 block"></i>
+                康复辅具
+            </div>
+        </aside>
+
+        <!-- 右侧商品列表 -->
+        <main class="shop-content space-y-4" id="productList">
+            
+            <!-- 默认显示营养配餐 -->
+            <div class="category-group" id="cat-meal">
+                <h3 class="font-bold text-stone-800 mb-3">营养配餐</h3>
+                
+                <!-- 商品 1 -->
+                <div class="flex bg-white rounded-lg p-2 mb-4 border border-stone-100 shadow-sm">
+                    <div class="w-24 h-24 bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 mr-3 flex-shrink-0">
+                        <i class="fas fa-utensils text-3xl"></i>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-stone-800">低糖营养套餐 A</h4>
+                            <p class="text-xs text-stone-500 mt-1">适合糖尿病人群 | 杂粮饭+清蒸鱼</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-lg font-bold text-red-500">¥ 25.00</span>
+                            <button class="w-8 h-8 bg-warm-primary text-white rounded-full flex items-center justify-center" onclick="addToCart(25)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品 2 -->
+                <div class="flex bg-white rounded-lg p-2 mb-4 border border-stone-100 shadow-sm">
+                    <div class="w-24 h-24 bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 mr-3 flex-shrink-0">
+                        <i class="fas fa-bowl-rice text-3xl"></i>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-stone-800">软烂易嚼套餐 B</h4>
+                            <p class="text-xs text-stone-500 mt-1">适合牙口不好 | 炖蛋+肉末茄子</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-lg font-bold text-red-500">¥ 22.00</span>
+                            <button class="w-8 h-8 bg-warm-primary text-white rounded-full flex items-center justify-center" onclick="addToCart(22)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他分类占位 -->
+            <div class="category-group hidden" id="cat-veg">
+                <h3 class="font-bold text-stone-800 mb-3">生鲜果蔬</h3>
+                <div class="p-4 text-center text-stone-500">暂无商品</div>
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- 购物车浮动条 -->
+    <div class="cart-bar hidden" id="cartBar">
+        <div class="flex items-center">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-warm-primary mr-3 relative">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center" id="cartCount">0</span>
+            </div>
+            <div>
+                <span class="text-sm opacity-80 text-white">合计:</span>
+                <span class="text-xl font-bold text-white" id="cartTotal">¥ 0.00</span>
+            </div>
+        </div>
+        <button class="bg-warm-primary text-white px-6 py-2 rounded-full font-bold shadow-lg border-2 border-white/20" onclick="goToPayment()">去结算</button>
+    </div>
+
+    <script>
+        function goToPayment() {
+            if (cart.count === 0) {
+                alert('请先选择商品');
+                return;
+            }
+            // 简单传参：实际应存入 localStorage 或通过后端
+            localStorage.setItem('cartTotal', cart.total.toFixed(2));
+            window.location.href = 'payment.html';
+        }
+
+        // 简单的分类切换逻辑
+        function switchCategory(el, catId) {
+            // 更新侧边栏样式
+            document.querySelectorAll('.shop-sidebar-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+            
+            // 模拟切换内容 (这里简化处理，实际应该请求数据或显示对应区域)
+            // 在原型中，我们只演示 UI 变化
+            const titleMap = {
+                'meal': '营养配餐',
+                'veg': '生鲜果蔬',
+                'daily': '日用百货',
+                'service': '上门服务',
+                'medical': '康复辅具'
+            };
+            
+            // 这里为了演示，只是改个标题，实际项目会替换内容
+            const container = document.getElementById('productList');
+            if (catId === 'meal') {
+                 document.getElementById('cat-meal').classList.remove('hidden');
+                 document.getElementById('cat-veg').classList.add('hidden');
+            } else {
+                 document.getElementById('cat-meal').classList.add('hidden');
+                 document.getElementById('cat-veg').classList.remove('hidden');
+                 document.getElementById('cat-veg').querySelector('h3').innerText = titleMap[catId];
+            }
+        }
+
+        // 简单的购物车逻辑
+        let cart = { count: 0, total: 0 };
+        
+        function addToCart(price) {
+            cart.count++;
+            cart.total += price;
+            
+            updateCartUI();
+        }
+        
+        function updateCartUI() {
+            const cartBar = document.getElementById('cartBar');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.count > 0) {
+                cartBar.classList.remove('hidden');
+                cartBar.classList.add('flex');
+            } else {
+                cartBar.classList.add('hidden');
+                cartBar.classList.remove('flex');
+            }
+            
+            cartCount.innerText = cart.count;
+            cartTotal.innerText = '¥ ' + cart.total.toFixed(2);
+        }
+    </script>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav flex justify-around items-center h-20 text-stone-400 relative">
+        <a href="index.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-home text-2xl mb-1"></i>
+            <span class="text-xs font-medium">首页</span>
+        </a>
+        <a href="care.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-calendar-alt text-2xl mb-1"></i>
+            <span class="text-xs font-medium">服务</span>
+        </a>
+
+        <!-- SOS 按钮占位 -->
+        <div class="w-full h-full relative">
+             <div class="nav-sos-container">
+                <a href="device.html" class="nav-sos-btn">
+                    <span class="font-bold text-lg">SOS</span>
+                </a>
+             </div>
+        </div>
+
+        <a href="orders.html" class="nav-item active flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-shopping-bag text-2xl mb-1"></i>
+            <span class="text-xs font-medium">商城</span>
+        </a>
+        <a href="health.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-user text-2xl mb-1"></i>
+            <span class="text-xs font-medium">我的</span>
+        </a>
+    </nav>
+
+</body>
+</html>

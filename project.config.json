@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "projectname": "smart-wellness-member",
+  "description": "智慧康养系统会员端",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram"
+}

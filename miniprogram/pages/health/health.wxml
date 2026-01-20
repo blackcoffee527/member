@@ -1,0 +1,88 @@
+<view class="container">
+  <!-- 个人信息卡片 -->
+  <navigator url="/pages/profile/profile" class="card flex items-center mb-6 p-6" style="background: linear-gradient(to right, #14b8a6, #22c55e);">
+    <view class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4 border-2 border-white" style="width: 120rpx; height: 120rpx;">
+      <text style="font-size: 60rpx;">👴</text>
+    </view>
+    <view class="flex-1">
+      <text class="text-2xl font-bold block text-white">张建国</text>
+      <text class="text-white opacity-90 text-sm block mt-1">76岁 | A型血 | 过敏史: 青霉素</text>
+    </view>
+    <text class="text-white text-xl font-bold">></text>
+  </navigator>
+
+  <!-- 订单管理模块 (带折叠) -->
+  <view class="card p-0 overflow-hidden" style="padding: 0;">
+    <view class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50" bindtap="toggleOrders">
+      <view class="flex items-center">
+        <view class="w-1 h-4 bg-warm-primary mr-2 rounded"></view>
+        <text class="font-bold text-gray-800">我的订单</text>
+        <text class="text-xs text-gray-500 ml-2">(3个最近订单)</text>
+      </view>
+      <view class="flex items-center">
+        <text class="text-sm text-gray-500 mr-2">{{showOrders ? '收起' : '展开'}}</text>
+        <text class="text-gray-400" style="transition: transform 0.3s; transform: rotate({{showOrders ? 180 : 0}}deg);">▼</text>
+      </view>
+    </view>
+    
+    <view wx:if="{{showOrders}}">
+        <navigator url="/pages/orders/orders" open-type="switchTab" class="p-3 text-center text-sm text-warm-primary border-b border-gray-100">查看全部订单 ></navigator>
+        
+        <view class="p-4 border-b border-gray-100 bg-white">
+            <view class="flex justify-between mb-1">
+                <text class="text-gray-800 font-bold">营养午餐套餐 A</text>
+                <text class="text-warm-primary text-sm">待支付</text>
+            </view>
+            <view class="flex justify-between">
+                <text class="text-gray-500 text-xs">x 1</text>
+                <text class="text-gray-800 font-bold">¥ 25.00</text>
+            </view>
+            <view class="flex justify-end mt-2">
+                <button class="text-xs bg-warm-primary text-white px-3 py-1 rounded-full" style="width: auto; margin: 0; font-size: 24rpx;">去支付</button>
+            </view>
+        </view>
+
+        <view class="p-4 border-b border-gray-100 bg-white">
+            <view class="flex justify-between mb-1">
+                <text class="text-gray-800 font-bold">生鲜蔬菜包</text>
+                <text class="text-green-500 text-sm">已支付</text>
+            </view>
+            <view class="flex justify-between">
+                <text class="text-gray-500 text-xs">x 1</text>
+                <text class="text-gray-800 font-bold">¥ 38.50</text>
+            </view>
+        </view>
+    </view>
+  </view>
+
+  <!-- 健康数据 -->
+  <view class="flex justify-between mb-4" style="display: flex; gap: 20rpx;">
+    <view class="card flex-1 flex flex-col items-center p-4" style="border-left: 8rpx solid #ef4444;">
+        <text class="text-gray-500 text-sm">血压 (mmHg)</text>
+        <text class="text-3xl font-bold text-gray-800 my-2">128/82</text>
+        <text class="text-green-500 text-xs">✅ 正常</text>
+    </view>
+    <view class="card flex-1 flex flex-col items-center p-4" style="border-left: 8rpx solid #3b82f6;">
+        <text class="text-gray-500 text-sm">血糖 (mmol/L)</text>
+        <text class="text-3xl font-bold text-gray-800 my-2">6.4</text>
+        <text class="text-orange-500 text-xs">⚠️ 偏高</text>
+    </view>
+  </view>
+
+  <!-- 评估报告 -->
+  <view>
+    <view class="flex items-center mb-3">
+        <view class="w-1 h-4 bg-warm-primary mr-2 rounded"></view>
+        <text class="font-bold text-gray-800">评估报告</text>
+    </view>
+    <view class="space-y-4">
+        <view class="card flex justify-between items-center p-4">
+            <view>
+                <text class="text-lg font-bold text-gray-800 block">老年人能力评估</text>
+                <text class="text-gray-500 text-sm mt-1 block">2023-10-15</text>
+            </view>
+            <button class="bg-warm-primary text-white px-4 py-2 rounded-lg text-sm" style="width: auto; margin: 0;">查看</button>
+        </view>
+    </view>
+  </view>
+</view>

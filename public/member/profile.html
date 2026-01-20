@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>个人详细信息 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="health.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">个人详细信息</h1>
+        <button onclick="saveProfile()" class="text-warm-primary font-bold">保存</button>
+    </header>
+
+    <main class="p-4 space-y-6">
+
+        <!-- 基本信息 -->
+        <div class="card">
+            <h3 class="font-bold text-stone-800 border-l-4 border-warm-primary pl-3 mb-4">基本信息</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">姓名</label>
+                    <input type="text" value="张建国" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">身份证号</label>
+                    <input type="text" value="110101194803123456" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-stone-600 text-sm mb-1">性别</label>
+                        <select class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                            <option value="男" selected>男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-stone-600 text-sm mb-1">民族</label>
+                        <input type="text" value="汉族" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">出生地</label>
+                    <input type="text" value="北京市" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">文化程度</label>
+                    <select class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                        <option value="小学">小学</option>
+                        <option value="初中">初中</option>
+                        <option value="高中/中专">高中/中专</option>
+                        <option value="大专" selected>大专</option>
+                        <option value="本科">本科</option>
+                        <option value="硕士及以上">硕士及以上</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">本人手机</label>
+                    <input type="tel" value="13800138000" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">居民性质</label>
+                    <select class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                        <option value="大陆居民" selected>大陆居民</option>
+                        <option value="港澳台居民">港澳台居民</option>
+                        <option value="华侨">华侨</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-stone-600 text-sm mb-1">宗教信仰</label>
+                        <select class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                            <option value="无" selected>无</option>
+                            <option value="佛教">佛教</option>
+                            <option value="道教">道教</option>
+                            <option value="基督教">基督教</option>
+                            <option value="伊斯兰教">伊斯兰教</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-stone-600 text-sm mb-1">是否党员</label>
+                        <select class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                            <option value="是" selected>是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-stone-600 text-sm mb-1">缴费情况</label>
+                    <input type="text" value="正常缴费 (职工医保)" class="w-full p-3 bg-stone-50 rounded-lg border border-stone-200 focus:outline-none focus:border-warm-primary">
+                </div>
+            </div>
+        </div>
+
+        <!-- 居住信息 -->
+        <div class="card">
+            <h3 class="font-bold text-stone-800 border-l-4 border-warm-primary pl-3 mb-4">居住信息</h3>
+            
+            <div class="mb-6">
+                <h4 class="font-bold text-stone-700 mb-3 flex items-center">
+                    <i class="fas fa-map-marker-alt text-warm-primary mr-2"></i>户籍地址
+                </h4>
+                <div class="space-y-3 pl-2 border-l-2 border-stone-100 ml-1">
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">省市区县</label>
+                        <input type="text" value="北京市朝阳区" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">镇街</label>
+                            <input type="text" value="建外街道" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">社区/村</label>
+                            <input type="text" value="永安里社区" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">详细地址</label>
+                        <input type="text" value="建华南路12号院3号楼2单元101" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-stone-700 mb-3 flex items-center">
+                    <i class="fas fa-home text-warm-primary mr-2"></i>现居住地
+                </h4>
+                <div class="flex items-center mb-3">
+                    <input type="checkbox" id="sameAsHukou" class="w-4 h-4 text-warm-primary rounded border-stone-300 focus:ring-warm-primary">
+                    <label for="sameAsHukou" class="ml-2 text-sm text-stone-600">同户籍地址</label>
+                </div>
+                <div class="space-y-3 pl-2 border-l-2 border-stone-100 ml-1">
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">省市区县</label>
+                        <input type="text" value="北京市朝阳区" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">镇街</label>
+                            <input type="text" value="建外街道" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">社区/村</label>
+                            <input type="text" value="永安里社区" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">详细地址</label>
+                        <input type="text" value="建华南路12号院3号楼2单元101" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 紧急联系人 -->
+        <div class="card">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-stone-800 border-l-4 border-warm-primary pl-3">紧急联系人</h3>
+                <button onclick="addContact()" class="text-sm text-warm-primary border border-warm-primary px-2 py-1 rounded hover:bg-warm-primary hover:text-white transition">
+                    <i class="fas fa-plus mr-1"></i>添加
+                </button>
+            </div>
+            
+            <div id="contacts-container" class="space-y-4">
+                <!-- 联系人 1 -->
+                <div class="contact-item bg-stone-50 p-3 rounded-lg border border-stone-200 relative">
+                    <button onclick="removeContact(this)" class="absolute top-2 right-2 text-stone-400 hover:text-red-500">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">姓名</label>
+                            <input type="text" value="张伟" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">关系</label>
+                            <input type="text" value="长子" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">电话</label>
+                        <div class="flex">
+                            <input type="tel" value="13912345678" class="w-full p-2 bg-white rounded-l border border-stone-200 text-sm">
+                            <a href="tel:13912345678" class="bg-green-500 text-white px-3 flex items-center justify-center rounded-r">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 联系人 2 -->
+                <div class="contact-item bg-stone-50 p-3 rounded-lg border border-stone-200 relative">
+                    <button onclick="removeContact(this)" class="absolute top-2 right-2 text-stone-400 hover:text-red-500">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">姓名</label>
+                            <input type="text" value="李秀英" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-stone-500 text-xs mb-1">关系</label>
+                            <input type="text" value="配偶" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">电话</label>
+                        <div class="flex">
+                            <input type="tel" value="13987654321" class="w-full p-2 bg-white rounded-l border border-stone-200 text-sm">
+                            <a href="tel:13987654321" class="bg-green-500 text-white px-3 flex items-center justify-center rounded-r">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // 添加联系人
+        function addContact() {
+            const container = document.getElementById('contacts-container');
+            const newContact = document.createElement('div');
+            newContact.className = 'contact-item bg-stone-50 p-3 rounded-lg border border-stone-200 relative animate-fade-in';
+            newContact.innerHTML = `
+                <button onclick="removeContact(this)" class="absolute top-2 right-2 text-stone-400 hover:text-red-500">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">姓名</label>
+                        <input type="text" placeholder="请输入姓名" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-stone-500 text-xs mb-1">关系</label>
+                        <input type="text" placeholder="如：子女" class="w-full p-2 bg-white rounded border border-stone-200 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-stone-500 text-xs mb-1">电话</label>
+                    <div class="flex">
+                        <input type="tel" placeholder="请输入电话号码" class="w-full p-2 bg-white rounded-l border border-stone-200 text-sm">
+                        <span class="bg-stone-200 text-stone-400 px-3 flex items-center justify-center rounded-r cursor-not-allowed">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newContact);
+        }
+
+        // 删除联系人
+        function removeContact(btn) {
+            if(confirm('确定要删除这位紧急联系人吗？')) {
+                btn.closest('.contact-item').remove();
+            }
+        }
+
+        // 保存信息
+        function saveProfile() {
+            // 模拟保存
+            const btn = document.querySelector('button[onclick="saveProfile()"]');
+            const originalText = btn.innerText;
+            btn.innerText = '保存中...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('个人信息已更新！');
+                btn.innerText = originalText;
+                btn.disabled = false;
+                window.location.href = 'health.html';
+            }, 800);
+        }
+
+        // 同步地址
+        document.getElementById('sameAsHukou').addEventListener('change', function(e) {
+            if(e.target.checked) {
+                // 这里应该写具体的同步逻辑，暂时仅做演示
+                alert('已自动填充现居地址（演示功能）');
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</body>
+</html>

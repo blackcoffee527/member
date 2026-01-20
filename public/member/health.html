@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>健康档案 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="index.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">健康档案与评估</h1>
+        <div class="w-8"></div> <!-- 占位 -->
+    </header>
+
+    <main class="p-4 space-y-6">
+        
+        <!-- 个人信息卡片 - 调整为柔和渐变，文字改为深色 -->
+        <a href="profile.html" class="card flex items-center bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200 relative active:scale-98 transition-transform shadow-sm">
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4 border-2 border-orange-200 shadow-sm text-orange-500">
+                <i class="fas fa-user text-3xl"></i>
+            </div>
+            <div class="flex-1">
+                <h2 class="text-2xl font-bold text-stone-800">张建国</h2>
+                <p class="text-stone-600 font-medium">76岁 | A型血 | 过敏史: 青霉素</p>
+            </div>
+            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/60 p-2 rounded-full text-orange-500 hover:bg-white transition-colors">
+                <i class="fas fa-edit"></i>
+            </div>
+        </a>
+
+        <!-- 订单管理模块 -->
+        <div class="card p-0 overflow-hidden">
+            <div class="p-4 border-b border-stone-100 flex justify-between items-center cursor-pointer bg-stone-50" onclick="toggleOrders()">
+                <div class="flex items-center">
+                    <h3 class="font-bold text-stone-800 border-l-4 border-warm-primary pl-3">我的订单</h3>
+                    <span class="text-xs text-stone-500 ml-2">(3个最近订单)</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-sm text-stone-500 mr-2">展开</span>
+                    <i class="fas fa-chevron-down text-stone-400 transition-transform duration-300" id="orderArrow"></i>
+                </div>
+            </div>
+            
+            <div id="orderList" class="hidden">
+                <div class="flex justify-between items-center px-4 py-2 bg-white border-b border-stone-100">
+                    <a href="orders.html" class="text-sm text-warm-primary w-full text-center py-1">查看全部订单 ></a>
+                </div>
+
+                <!-- 订单状态标签 -->
+                <div class="flex justify-around py-4 bg-stone-50 border-b border-stone-100">
+                    <div class="flex flex-col items-center text-warm-primary font-bold cursor-pointer">
+                        <span class="text-lg mb-1">全部</span>
+                        <div class="w-6 h-1 bg-warm-primary rounded-full"></div>
+                    </div>
+                    <div class="flex flex-col items-center text-stone-500 cursor-pointer">
+                        <span class="text-lg mb-1">待支付</span>
+                    </div>
+                    <div class="flex flex-col items-center text-stone-500 cursor-pointer">
+                        <span class="text-lg mb-1">已支付</span>
+                    </div>
+                    <div class="flex flex-col items-center text-stone-500 cursor-pointer">
+                        <span class="text-lg mb-1">退货/售后</span>
+                    </div>
+                </div>
+
+                <!-- 订单列表 -->
+                <div class="divide-y divide-stone-100">
+                    
+                    <!-- 待支付订单 -->
+                    <div class="p-4 bg-white">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-stone-500">2023-10-25 10:30</span>
+                            <span class="text-warm-primary font-bold">待支付</span>
+                        </div>
+                        <div class="flex mb-3">
+                            <div class="w-16 h-16 bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 mr-3">
+                                <i class="fas fa-utensils text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-stone-800">营养午餐套餐 A</h4>
+                                <p class="text-xs text-stone-500 mt-1">x 1</p>
+                                <div class="flex justify-end mt-1">
+                                    <span class="font-bold text-stone-800">¥ 25.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button class="px-3 py-1 border border-stone-300 rounded-full text-sm text-stone-600">取消</button>
+                            <button class="px-3 py-1 bg-warm-primary text-white rounded-full text-sm" onclick="window.location.href='payment.html'">去支付</button>
+                        </div>
+                    </div>
+
+                    <!-- 已支付订单 -->
+                    <div class="p-4 bg-white">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-stone-500">2023-10-24 15:20</span>
+                            <span class="text-green-600 font-bold">已支付</span>
+                        </div>
+                        <div class="flex mb-3">
+                            <div class="w-16 h-16 bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 mr-3">
+                                <i class="fas fa-shopping-basket text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-stone-800">生鲜蔬菜包</h4>
+                                <p class="text-xs text-stone-500 mt-1">x 1</p>
+                                <div class="flex justify-end mt-1">
+                                    <span class="font-bold text-stone-800">¥ 38.50</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button class="px-3 py-1 border border-stone-300 rounded-full text-sm text-stone-600">查看物流</button>
+                            <button class="px-3 py-1 border border-warm-primary text-warm-primary rounded-full text-sm">再次购买</button>
+                        </div>
+                    </div>
+
+                    <!-- 退货订单 -->
+                    <div class="p-4 bg-white opacity-80">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs text-stone-500">2023-10-20 09:00</span>
+                            <span class="text-stone-500 font-bold">退款成功</span>
+                        </div>
+                        <div class="flex mb-3">
+                            <div class="w-16 h-16 bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 mr-3">
+                                <i class="fas fa-first-aid text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-stone-800">助行器 (不合适)</h4>
+                                <p class="text-xs text-stone-500 mt-1">x 1</p>
+                                <div class="flex justify-end mt-1">
+                                    <span class="font-bold text-stone-800">¥ 120.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button class="px-3 py-1 border border-stone-300 rounded-full text-sm text-stone-600">删除记录</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最新健康数据 -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="card bg-white flex flex-col items-center py-6 border-l-4 border-red-500">
+                <span class="text-stone-500 text-sm">血压 (mmHg)</span>
+                <span class="text-3xl font-bold text-stone-800 my-2">128/82</span>
+                <span class="text-green-500 text-sm"><i class="fas fa-check-circle"></i> 正常</span>
+            </div>
+            <div class="card bg-white flex flex-col items-center py-6 border-l-4 border-amber-500">
+                <span class="text-stone-500 text-sm">血糖 (mmol/L)</span>
+                <span class="text-3xl font-bold text-stone-800 my-2">6.4</span>
+                <span class="text-amber-500 text-sm"><i class="fas fa-exclamation-circle"></i> 偏高</span>
+            </div>
+        </div>
+
+        <!-- 血压/血糖趋势图 -->
+        <div class="card">
+            <div class="flex items-center mb-4 space-x-6 border-b border-stone-100">
+                <div id="tab-bp" class="text-lg font-bold text-stone-800 border-b-4 border-warm-primary cursor-pointer pb-2 px-2" onclick="switchChart('bp')">近7天血压趋势</div>
+                <div id="tab-bg" class="text-lg font-medium text-stone-400 cursor-pointer pb-2 px-2 hover:text-stone-600" onclick="switchChart('bg')">近7天血糖趋势</div>
+            </div>
+            <canvas id="healthChart" height="200"></canvas>
+        </div>
+
+        <!-- 健康评估报告 -->
+        <div>
+            <h3 class="text-lg font-bold text-stone-800 mb-4 border-l-4 border-warm-primary pl-3">评估报告</h3>
+            <div class="space-y-4">
+                <div class="card flex justify-between items-center">
+                    <div>
+                        <h4 class="text-lg font-bold text-stone-800">ADL日常生活能力评估</h4>
+                        <p class="text-stone-500 text-sm mt-1">2023-10-15</p>
+                    </div>
+                    <button class="bg-warm-primary text-white px-4 py-2 rounded-lg text-sm" onclick="showAssessment('ADL')">查看</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div>
+                        <h4 class="text-lg font-bold text-stone-800">MMES迷你心理状态检查</h4>
+                        <p class="text-stone-500 text-sm mt-1">2023-09-01</p>
+                    </div>
+                    <button class="bg-warm-primary text-white px-4 py-2 rounded-lg text-sm" onclick="showAssessment('MMES')">查看</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav flex justify-around items-center h-20 text-stone-400 relative">
+        <a href="index.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-home text-2xl mb-1"></i>
+            <span class="text-xs font-medium">首页</span>
+        </a>
+        <a href="care.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-calendar-alt text-2xl mb-1"></i>
+            <span class="text-xs font-medium">服务</span>
+        </a>
+
+        <!-- SOS 按钮占位 -->
+        <div class="w-full h-full relative">
+             <div class="nav-sos-container">
+                <a href="device.html" class="nav-sos-btn">
+                    <span class="font-bold text-lg">SOS</span>
+                </a>
+             </div>
+        </div>
+
+        <a href="orders.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-shopping-bag text-2xl mb-1"></i>
+            <span class="text-xs font-medium">商城</span>
+        </a>
+        <a href="health.html" class="nav-item active flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-user text-2xl mb-1"></i>
+            <span class="text-xs font-medium">我的</span>
+        </a>
+    </nav>
+
+    <!-- 评估详情模态框 -->
+    <div id="assessmentModal" class="fixed inset-0 bg-stone-900 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-6 relative animate-[fadeIn_0.3s_ease-out]">
+            <button class="absolute top-4 right-4 text-stone-400 hover:text-stone-600" onclick="closeAssessment()">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h3 id="modalTitle" class="text-xl font-bold text-stone-800 mb-4 border-l-4 border-warm-primary pl-3"></h3>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between border-b border-stone-100 pb-2">
+                    <span class="text-stone-500">评估时间</span>
+                    <span id="modalDate" class="font-bold text-stone-800"></span>
+                </div>
+                <div class="flex justify-between border-b border-stone-100 pb-2">
+                    <span class="text-stone-500">评估人员</span>
+                    <span id="modalAssessor" class="font-bold text-stone-800"></span>
+                </div>
+                <div class="bg-stone-50 p-4 rounded-xl">
+                    <p class="text-sm text-stone-500 mb-2">评估结果</p>
+                    <p id="modalResult" class="text-stone-800 font-medium"></p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-xl">
+                    <p class="text-sm text-orange-500 mb-2">医生建议</p>
+                    <p id="modalAdvice" class="text-stone-700 text-sm"></p>
+                </div>
+            </div>
+            
+            <button class="w-full bg-warm-primary text-white py-3 rounded-xl mt-6 font-bold" onclick="closeAssessment()">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        // 模拟数据
+        const chartData = {
+            bp: {
+                datasets: [{
+                    label: '收缩压',
+                    data: [120, 125, 122, 130, 128, 126, 128],
+                    borderColor: '#ef4444',
+                    tension: 0.4
+                }, {
+                    label: '舒张压',
+                    data: [80, 82, 78, 85, 82, 80, 82],
+                    borderColor: '#f97316', // Orange
+                    tension: 0.4
+                }]
+            },
+            bg: {
+                datasets: [{
+                    label: '空腹血糖',
+                    data: [6.1, 6.3, 5.9, 6.4, 6.2, 6.0, 6.1],
+                    borderColor: '#f59e0b',
+                    tension: 0.4
+                }, {
+                    label: '餐后血糖',
+                    data: [8.5, 8.8, 8.2, 9.0, 8.6, 8.4, 8.5],
+                    borderColor: '#10b981',
+                    tension: 0.4
+                }]
+            }
+        };
+
+        // 评估数据
+        const assessmentData = {
+            'ADL': {
+                title: 'ADL日常生活能力评估',
+                date: '2023-10-15 14:30',
+                assessor: '李华 (主任医师)',
+                result: '总分 85分 (轻度依赖)',
+                advice: '建议加强下肢力量训练，洗澡时建议有人陪护或使用助浴设备。日常行走建议使用手杖辅助。'
+            },
+            'MMES': {
+                title: 'MMES迷你心理状态检查',
+                date: '2023-09-01 09:15',
+                assessor: '王芳 (心理咨询师)',
+                result: '总分 26分 (正常)',
+                advice: '认知功能基本正常。建议多参与社区社交活动，保持良好的睡眠习惯，定期进行益智类活动（如下棋、阅读）。'
+            }
+        };
+
+        let currentChart = null;
+
+        function initChart() {
+            const ctx = document.getElementById('healthChart').getContext('2d');
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    datasets: chartData.bp.datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchChart(type) {
+            const tabBp = document.getElementById('tab-bp');
+            const tabBg = document.getElementById('tab-bg');
+            
+            if (type === 'bp') {
+                tabBp.className = 'text-lg font-bold text-stone-800 border-b-4 border-warm-primary cursor-pointer pb-2 px-2';
+                tabBg.className = 'text-lg font-medium text-stone-400 cursor-pointer pb-2 px-2 hover:text-stone-600';
+                currentChart.data.datasets = chartData.bp.datasets;
+            } else {
+                tabBp.className = 'text-lg font-medium text-stone-400 cursor-pointer pb-2 px-2 hover:text-stone-600';
+                tabBg.className = 'text-lg font-bold text-stone-800 border-b-4 border-warm-primary cursor-pointer pb-2 px-2';
+                currentChart.data.datasets = chartData.bg.datasets;
+            }
+            
+            currentChart.update();
+        }
+
+        function toggleOrders() {
+            const list = document.getElementById('orderList');
+            const arrow = document.getElementById('orderArrow');
+            
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                list.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
+        function showAssessment(type) {
+            const data = assessmentData[type];
+            if (!data) return;
+
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDate').textContent = data.date;
+            document.getElementById('modalAssessor').textContent = data.assessor;
+            document.getElementById('modalResult').textContent = data.result;
+            document.getElementById('modalAdvice').textContent = data.advice;
+
+            document.getElementById('assessmentModal').classList.remove('hidden');
+        }
+
+        function closeAssessment() {
+            document.getElementById('assessmentModal').classList.add('hidden');
+        }
+
+        // 初始化
+        initChart();
+    </script>
+</body>
+</html>

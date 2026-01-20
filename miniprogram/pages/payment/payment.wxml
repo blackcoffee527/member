@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="card flex flex-col items-center py-10 mb-6">
+    <text class="text-gray-500 mb-2">支付金额</text>
+    <text class="text-4xl font-bold text-gray-800">¥ 25.00</text>
+    <text class="text-gray-500 mt-2">营养午餐套餐 A</text>
+  </view>
+
+  <view class="card">
+    <text class="font-bold text-gray-800 block mb-4">支付方式</text>
+    <view class="flex items-center justify-between py-3 border-b border-gray-100">
+        <view class="flex items-center">
+            <text class="mr-2 text-green-500">💬</text>
+            <text>微信支付</text>
+        </view>
+        <radio checked color="#3b82f6"/>
+    </view>
+    <view class="flex items-center justify-between py-3">
+        <view class="flex items-center">
+            <text class="mr-2 text-orange-500">💰</text>
+            <text>养老卡余额</text>
+        </view>
+        <radio color="#3b82f6"/>
+    </view>
+  </view>
+
+  <view class="mt-8">
+    <button class="w-full btn-primary text-xl font-bold py-4 rounded-xl" bindtap="pay">确认支付</button>
+  </view>
+</view>

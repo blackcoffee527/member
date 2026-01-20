@@ -1,0 +1,47 @@
+<view class="container">
+  <view class="flex items-center justify-between mb-4">
+    <text class="text-2xl font-bold">照护计划</text>
+    <text class="text-sm text-gray-500">2024年1月16日</text>
+  </view>
+
+  <view class="card">
+    <view class="flex justify-between items-center border-b pb-2 mb-2">
+      <text class="text-lg font-bold text-gray-800">今日服务</text>
+      <text class="text-sm text-blue-500">2项</text>
+    </view>
+    <view class="space-y-4">
+        <view class="flex items-start py-2">
+            <view class="w-2 h-2 rounded-full bg-green-500 mt-2 mr-2"></view>
+            <view>
+                <text class="block text-gray-800 font-bold">居家保洁</text>
+                <text class="block text-gray-500 text-sm">上午 09:00 - 11:00</text>
+                <text class="block text-gray-500 text-sm">服务人员：李阿姨</text>
+            </view>
+        </view>
+        <view class="flex items-start py-2">
+            <view class="w-2 h-2 rounded-full bg-blue-500 mt-2 mr-2"></view>
+            <view>
+                <text class="block text-gray-800 font-bold">助浴服务</text>
+                <text class="block text-gray-500 text-sm">下午 14:00 - 15:00</text>
+                <text class="block text-gray-500 text-sm">服务人员：王师傅</text>
+            </view>
+        </view>
+    </view>
+  </view>
+  
+  <view class="card">
+    <view class="flex justify-between items-center border-b pb-2 mb-2">
+      <text class="text-lg font-bold text-gray-800">本周计划</text>
+    </view>
+    <view class="space-y-2">
+        <view class="flex justify-between py-2 border-b border-gray-100">
+            <text class="text-gray-800">周三 (1月17日)</text>
+            <text class="text-gray-500">送餐服务</text>
+        </view>
+        <view class="flex justify-between py-2 border-b border-gray-100">
+            <text class="text-gray-800">周五 (1月19日)</text>
+            <text class="text-gray-500">上门体检</text>
+        </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,144 @@
+<view class="pb-24">
+  <!-- 顶部欢迎栏 -->
+  <view class="bg-orange-100 p-6 rounded-b-3xl shadow-lg relative z-10" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-bottom: 4rpx solid #fed7aa;">
+    <view class="flex justify-between items-center mb-4">
+      <view>
+        <text class="text-lg opacity-80 block">下午好，</text>
+        <text class="text-3xl font-bold text-gray-800 block">张建国 爷爷</text>
+      </view>
+      <navigator url="/pages/profile/profile" class="w-14 h-14 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-md" style="width: 110rpx; height: 110rpx; border: 4rpx solid #fdba74;">
+        <text style="font-size: 50rpx;">👴</text>
+      </navigator>
+    </view>
+
+    <!-- 天气与提醒 -->
+    <view class="card p-4 flex items-center justify-between mb-0">
+      <view class="flex items-center">
+        <view class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+          <text>☀️</text>
+        </view>
+        <view>
+          <text class="text-xl font-bold text-gray-800 block">26°C 晴朗</text>
+          <text class="text-sm text-gray-500 block">适宜户外活动</text>
+        </view>
+      </view>
+      <view class="text-right">
+        <text class="text-sm text-gray-500 block">今日步数</text>
+        <text class="text-2xl font-bold text-blue-500 block">3,582</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="px-4" style="margin-top: -20rpx; position: relative; z-index: 20;">
+    <!-- 快捷功能网格 -->
+    <view class="grid-2-cols mb-6" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20rpx;">
+      <navigator url="/pages/health/health" open-type="switchTab" class="card flex flex-col items-center justify-center py-6">
+        <view class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+          <text style="font-size: 40rpx;">💓</text>
+        </view>
+        <text class="text-xl font-bold text-gray-800">健康档案</text>
+        <text class="text-sm text-gray-500 mt-1">血压/血糖记录</text>
+      </navigator>
+
+      <navigator url="/pages/care/care" open-type="switchTab" class="card flex flex-col items-center justify-center py-6">
+        <view class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3">
+          <text style="font-size: 40rpx;">📅</text>
+        </view>
+        <text class="text-xl font-bold text-gray-800">照护服务</text>
+        <text class="text-sm text-gray-500 mt-1">今日服务计划</text>
+      </navigator>
+
+      <navigator url="/pages/orders/orders" open-type="switchTab" class="card flex flex-col items-center justify-center py-6">
+        <view class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-3">
+          <text style="font-size: 40rpx;">🛍️</text>
+        </view>
+        <text class="text-xl font-bold text-gray-800">生活商城</text>
+        <text class="text-sm text-gray-500 mt-1">送餐/买菜</text>
+      </navigator>
+
+      <navigator url="/pages/device/device" class="card flex flex-col items-center justify-center py-6">
+        <view class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-3" style="background-color: #f3e8ff;">
+          <text style="font-size: 40rpx;">🛡️</text>
+        </view>
+        <text class="text-xl font-bold text-gray-800">安全设备</text>
+        <text class="text-sm text-gray-500 mt-1">手环/报警器</text>
+      </navigator>
+    </view>
+
+    <!-- 社区通知 -->
+    <view class="mb-6">
+      <view class="flex justify-between items-center mb-3 px-1">
+        <view class="flex items-center">
+          <view class="w-1 h-6 bg-blue-500 mr-2 rounded"></view>
+          <text class="text-xl font-bold text-gray-800">社区通知</text>
+        </view>
+        <navigator url="/pages/notifications/notifications" class="text-gray-500">更多 ></navigator>
+      </view>
+      
+      <view class="card">
+        <view class="flex items-start border-b pb-3 mb-3">
+          <view class="bg-orange-100 text-orange-500 text-xs font-bold px-2 py-1 rounded mt-1 mr-3">重要</view>
+          <view>
+            <text class="text-lg font-bold text-gray-800 block">免费体检通知</text>
+            <text class="text-gray-500 text-sm mt-1 block">本周六上午9点，社区医院为您提供免费...</text>
+          </view>
+        </view>
+        <view class="flex items-start">
+          <view class="bg-blue-100 text-blue-500 text-xs font-bold px-2 py-1 rounded mt-1 mr-3">活动</view>
+          <view>
+            <text class="text-lg font-bold text-gray-800 block">老年书法兴趣班开课啦</text>
+            <text class="text-gray-500 text-sm mt-1 block">欢迎各位书法爱好者报名参加...</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 今日提醒 -->
+    <view>
+      <view class="flex justify-between items-center mb-3 px-1">
+        <view class="flex items-center">
+          <view class="w-1 h-6 bg-blue-500 mr-2 rounded"></view>
+          <text class="text-xl font-bold text-gray-800">今日提醒</text>
+        </view>
+        <text class="text-sm text-gray-500">3项待办</text>
+      </view>
+      
+      <view class="space-y-3">
+        <!-- 已完成项 -->
+        <view class="card flex items-center p-4" style="border-left: 8rpx solid #22c55e; opacity: 0.7;">
+          <view class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+            <text>💊</text>
+          </view>
+          <view class="flex-1">
+            <text class="text-lg font-bold text-gray-800 block" style="text-decoration: line-through;">服用降压药</text>
+            <text class="text-gray-500 text-sm block">上午 08:00 (已完成)</text>
+          </view>
+          <text class="text-green-500 text-2xl">✅</text>
+        </view>
+
+        <!-- 待办项 -->
+        <view class="card flex items-center p-4" style="border-left: 8rpx solid #3b82f6;">
+          <view class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+            <text>🩺</text>
+          </view>
+          <view class="flex-1">
+            <text class="text-lg font-bold text-gray-800 block">测量血压</text>
+            <text class="text-gray-500 text-sm block">下午 14:00 (建议饭后)</text>
+          </view>
+          <button class="px-3 py-1 bg-white border border-blue-500 text-blue-500 rounded-full text-sm font-medium" style="width: auto; margin: 0; min-height: unset; padding: 10rpx 30rpx;">打卡</button>
+        </view>
+        
+        <view class="card flex items-center p-4" style="border-left: 8rpx solid #f97316;">
+          <view class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+            <text>👥</text>
+          </view>
+          <view class="flex-1">
+            <text class="text-lg font-bold text-gray-800 block">书法兴趣班</text>
+            <text class="text-gray-500 text-sm block">下午 15:30 (活动中心)</text>
+          </view>
+          <button class="px-3 py-1 bg-white border border-orange-500 text-orange-500 rounded-full text-sm font-medium" style="width: auto; margin: 0; min-height: unset; padding: 10rpx 30rpx;">签到</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

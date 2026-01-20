@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>服务详情 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="javascript:history.back()" class="text-gray-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-gray-800">服务详情</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4 space-y-4">
+        <!-- 状态卡片 -->
+        <div class="bg-white rounded-2xl p-6 flex flex-col items-center justify-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3 text-green-500">
+                <i class="fas fa-check text-3xl"></i>
+            </div>
+            <h2 class="text-xl font-bold text-gray-800">服务已完成</h2>
+            <p class="text-gray-500 text-sm mt-1">感谢您使用社区照护服务</p>
+        </div>
+
+        <!-- 详细信息 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+            <h3 class="font-bold text-gray-800 border-l-4 border-warm-primary pl-3 mb-4">服务信息</h3>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between border-b border-gray-50 pb-3">
+                    <span class="text-gray-500">服务项目</span>
+                    <span id="serviceName" class="font-bold text-gray-800">全天照护</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-50 pb-3">
+                    <span class="text-gray-500">服务时间</span>
+                    <span id="serviceTime" class="text-gray-800">2024-01-14 08:00 - 18:00</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-50 pb-3">
+                    <span class="text-gray-500">服务地点</span>
+                    <span class="text-gray-800">幸福社区 3栋 2单元 101</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-500">服务人员</span>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center mr-2 text-gray-500">
+                            <i class="fas fa-user text-xs"></i>
+                        </div>
+                        <span id="serviceStaff" class="text-gray-800 font-medium">李阿姨</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服务内容描述 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+            <h3 class="font-bold text-gray-800 border-l-4 border-warm-primary pl-3 mb-4">服务记录</h3>
+            <p id="serviceDesc" class="text-gray-600 text-sm leading-relaxed">
+                按时到达，协助老人完成晨间洗漱、早餐。上午陪同老人散步30分钟。午餐后协助午休。下午进行了简单的康复按摩，老人精神状态良好。晚餐准备了清淡饮食。
+            </p>
+            
+            <div class="mt-4 flex space-x-2">
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 评价 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+            <h3 class="font-bold text-gray-800 border-l-4 border-warm-primary pl-3 mb-4">我的评价</h3>
+            <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400 space-x-1">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-500 text-sm">非常满意</span>
+            </div>
+            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg">李阿姨非常细心，照顾得很周到，感谢！</p>
+        </div>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+        
+        // 模拟数据
+        const data = {
+            'care': {
+                name: '全天照护',
+                time: '昨天 08:00 - 18:00',
+                staff: '李阿姨',
+                desc: '按时到达，协助老人完成晨间洗漱、早餐。上午陪同老人散步30分钟。午餐后协助午休。下午进行了简单的康复按摩，老人精神状态良好。'
+            },
+            'bath': {
+                name: '助浴服务',
+                time: '前天 14:00 - 15:00',
+                staff: '王师傅',
+                desc: '协助老人完成洗澡，注意保暖和防滑。检查了皮肤状况，未发现异常。'
+            },
+            'hospital': {
+                name: '陪同就医',
+                time: '10月12日 09:00 - 11:30',
+                staff: '张护士',
+                desc: '陪同前往社区医院进行常规复查，协助挂号、缴费、取药。医生嘱咐按时服药。'
+            }
+        };
+
+        const item = data[type] || data['care']; // 默认显示第一个
+
+        document.getElementById('serviceName').innerText = item.name;
+        document.getElementById('serviceTime').innerText = item.time;
+        document.getElementById('serviceStaff').innerText = item.staff;
+        document.getElementById('serviceDesc').innerText = item.desc;
+    </script>
+
+</body>
+</html>

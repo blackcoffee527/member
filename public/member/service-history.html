@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>服务历史 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="care.html" class="text-gray-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-gray-800">服务历史记录</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4">
+        <div class="card p-0 overflow-hidden">
+            <table class="w-full text-left">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="p-3 text-sm font-medium text-gray-500">日期</th>
+                            <th class="p-3 text-sm font-medium text-gray-500">项目</th>
+                            <th class="p-3 text-sm font-medium text-gray-500 text-center">状态</th>
+                            <th class="p-3 text-sm font-medium text-gray-500 text-right">服务详情</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">昨天</td>
+                            <td class="p-3 text-gray-800">全天照护</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=care" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">前天</td>
+                            <td class="p-3 text-gray-800">助浴服务</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=bath" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">10-12</td>
+                            <td class="p-3 text-gray-800">陪同就医</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=hospital" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">10-10</td>
+                            <td class="p-3 text-gray-800">康复训练</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=care" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">10-08</td>
+                            <td class="p-3 text-gray-800">助餐服务</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=care" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 text-gray-800">10-05</td>
+                            <td class="p-3 text-gray-800">居家保洁</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=care" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center mt-6">
+            <button class="text-gray-500 text-sm">加载更多...</button>
+        </div>
+    </main>
+
+</body>
+</html>

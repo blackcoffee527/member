@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>照护计划 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="index.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">照护计划与服务</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4 space-y-6">
+
+        <!-- 日历选择 -->
+        <div class="card overflow-x-auto whitespace-nowrap py-4 px-2">
+            <div class="inline-flex space-x-2">
+                <div class="flex flex-col items-center justify-center w-16 h-20 rounded-xl bg-stone-100 text-stone-500">
+                    <span class="text-xs">周日</span>
+                    <span class="text-xl font-bold">14</span>
+                </div>
+                <div class="flex flex-col items-center justify-center w-16 h-20 rounded-xl bg-warm-primary text-white shadow-lg transform scale-105">
+                    <span class="text-xs">今天</span>
+                    <span class="text-xl font-bold">15</span>
+                </div>
+                <div class="flex flex-col items-center justify-center w-16 h-20 rounded-xl bg-stone-100 text-stone-500">
+                    <span class="text-xs">周二</span>
+                    <span class="text-xl font-bold">16</span>
+                </div>
+                <div class="flex flex-col items-center justify-center w-16 h-20 rounded-xl bg-stone-100 text-stone-500">
+                    <span class="text-xs">周三</span>
+                    <span class="text-xl font-bold">17</span>
+                </div>
+                <div class="flex flex-col items-center justify-center w-16 h-20 rounded-xl bg-stone-100 text-stone-500">
+                    <span class="text-xs">周四</span>
+                    <span class="text-xl font-bold">18</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 今日计划 -->
+        <div>
+            <h3 class="text-lg font-bold text-stone-800 mb-4 border-l-4 border-warm-primary pl-3">今日计划 (3/4)</h3>
+            <div class="space-y-4">
+                
+                <!-- 已完成项目 -->
+                <div class="card flex items-center bg-stone-50 border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 text-green-600">
+                        <i class="fas fa-check text-xl"></i>
+                    </div>
+                    <div class="flex-1 opacity-60">
+                        <h4 class="text-lg font-bold text-stone-800 line-through">晨间护理</h4>
+                        <p class="text-stone-500 text-sm">08:00 - 08:30 | 护理员：李阿姨</p>
+                    </div>
+                </div>
+
+                <div class="card flex items-center bg-stone-50 border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 text-green-600">
+                        <i class="fas fa-check text-xl"></i>
+                    </div>
+                    <div class="flex-1 opacity-60">
+                        <h4 class="text-lg font-bold text-stone-800 line-through">助餐服务 (午餐)</h4>
+                        <p class="text-stone-500 text-sm">11:30 - 12:00 | 送餐员：小王</p>
+                    </div>
+                </div>
+
+                <div class="card flex items-center bg-stone-50 border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 text-green-600">
+                        <i class="fas fa-check text-xl"></i>
+                    </div>
+                    <div class="flex-1 opacity-60">
+                        <h4 class="text-lg font-bold text-stone-800 line-through">午休照看</h4>
+                        <p class="text-stone-500 text-sm">13:00 - 14:00 | 护理员：李阿姨</p>
+                    </div>
+                </div>
+
+                <!-- 待完成项目 -->
+                <div class="card flex items-center border-l-4 border-warm-primary shadow-md">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4 text-warm-primary">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-bold text-stone-800">康复训练</h4>
+                        <p class="text-stone-500 text-sm">16:00 - 17:00 | 康复师：张医生</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 服务记录 -->
+        <div>
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-stone-800 border-l-4 border-warm-primary pl-3">服务历史</h3>
+                <a href="service-history.html" class="text-stone-500 text-sm">查看全部 ></a>
+            </div>
+            
+            <div class="card p-0 overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-stone-50">
+                        <tr>
+                            <th class="p-3 text-sm font-medium text-stone-500">日期</th>
+                            <th class="p-3 text-sm font-medium text-stone-500">项目</th>
+                            <th class="p-3 text-sm font-medium text-stone-500 text-center">状态</th>
+                            <th class="p-3 text-sm font-medium text-stone-500 text-right">服务详情</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-100">
+                        <tr>
+                            <td class="p-3 text-stone-800">昨天</td>
+                            <td class="p-3 text-stone-800">全天照护</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=care" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 text-stone-800">前天</td>
+                            <td class="p-3 text-stone-800">助浴服务</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=bath" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 text-stone-800">10-12</td>
+                            <td class="p-3 text-stone-800">陪同就医</td>
+                            <td class="p-3 text-green-600 text-center font-medium">完成</td>
+                            <td class="p-3 text-right">
+                                <a href="service-detail.html?type=hospital" class="text-warm-primary text-sm font-bold border border-warm-primary px-2 py-1 rounded">查看详情</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav flex justify-around items-center h-20 text-stone-400 relative">
+        <a href="index.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-home text-2xl mb-1"></i>
+            <span class="text-xs font-medium">首页</span>
+        </a>
+        <a href="care.html" class="nav-item active flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-calendar-alt text-2xl mb-1"></i>
+            <span class="text-xs font-medium">服务</span>
+        </a>
+
+        <!-- SOS 按钮占位 -->
+        <div class="w-full h-full relative">
+             <div class="nav-sos-container">
+                <a href="device.html" class="nav-sos-btn">
+                    <span class="font-bold text-lg">SOS</span>
+                </a>
+             </div>
+        </div>
+
+        <a href="orders.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-shopping-bag text-2xl mb-1"></i>
+            <span class="text-xs font-medium">商城</span>
+        </a>
+        <a href="health.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-user text-2xl mb-1"></i>
+            <span class="text-xs font-medium">我的</span>
+        </a>
+    </nav>
+
+</body>
+</html>

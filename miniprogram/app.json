@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/care/care",
+    "pages/device/device",
+    "pages/orders/orders",
+    "pages/health/health",
+    "pages/profile/profile",
+    "pages/payment/payment",
+    "pages/notifications/notifications"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "社区康养中心",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#94a3b8",
+    "selectedColor": "#3B82F6",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/care/care",
+        "text": "服务",
+        "iconPath": "images/care.png",
+        "selectedIconPath": "images/care-active.png"
+      },
+      {
+        "pagePath": "pages/device/device",
+        "text": "SOS",
+        "iconPath": "images/sos.png",
+        "selectedIconPath": "images/sos-active.png"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "商城",
+        "iconPath": "images/shop.png",
+        "selectedIconPath": "images/shop-active.png"
+      },
+      {
+        "pagePath": "pages/health/health",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

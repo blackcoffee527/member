@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>通知详情 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="javascript:history.back()" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">通知详情</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4">
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <!-- 标题区域 -->
+            <div class="border-b border-stone-100 pb-4 mb-4">
+                <div class="flex items-center mb-2">
+                    <span id="noteType" class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded mr-2">重要</span>
+                    <span id="noteDate" class="text-stone-400 text-sm">2024-01-15</span>
+                </div>
+                <h1 id="noteTitle" class="text-2xl font-bold text-stone-800 leading-tight">免费体检通知</h1>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="space-y-4 text-stone-600 leading-relaxed">
+                <p>尊敬的社区居民：</p>
+                <p id="noteContent">为了关注社区老年人的身体健康，提高老年人的健康水平，社区医院将于本周六上午举办针对60岁以上老年人的免费体检活动。</p>
+                
+                <div class="bg-stone-50 p-4 rounded-xl space-y-2 mt-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-clock text-warm-primary mt-1 w-6"></i>
+                        <div>
+                            <span class="font-bold text-stone-700 block">时间</span>
+                            <span id="noteTime" class="text-stone-600">2024年1月20日 09:00 - 12:00</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-warm-primary mt-1 w-6"></i>
+                        <div>
+                            <span class="font-bold text-stone-700 block">地点</span>
+                            <span id="noteLocation" class="text-stone-600">社区医院一楼大厅</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>请携带本人身份证或医保卡前往。体检前请保持空腹（体检前一晚22:00后禁食水）。</p>
+                <p>如有疑问，请咨询社区服务热线：010-12345678。</p>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-stone-100 text-right">
+                <p class="text-stone-500 font-medium">幸福社区居委会</p>
+                <p class="text-stone-400 text-sm mt-1">2024年1月15日</p>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        
+        const notifications = {
+            '1': {
+                type: '重要',
+                typeClass: 'bg-red-100 text-red-600',
+                date: '2024-01-15',
+                title: '免费体检通知',
+                content: '为了关注社区老年人的身体健康，提高老年人的健康水平，社区医院将于本周六上午举办针对60岁以上老年人的免费体检活动。本次体检包含：一般检查、血常规、尿常规、肝功能、肾功能、空腹血糖、血脂、心电图、腹部B超等项目。',
+                time: '2024年1月20日 09:00 - 12:00',
+                location: '社区医院一楼大厅'
+            },
+            '2': {
+                type: '活动',
+                typeClass: 'bg-amber-100 text-amber-600',
+                date: '2024-01-14',
+                title: '老年书法兴趣班开课啦',
+                content: '为了丰富社区老年人的精神文化生活，弘扬中华传统文化，社区特别邀请了著名书法家张老师来为大家授课。无论您是否有书法基础，都欢迎报名参加。我们将免费提供笔墨纸砚。',
+                time: '每周二、四 14:00 - 16:00',
+                location: '社区活动中心二楼书画室'
+            }
+        };
+
+        if (id && notifications[id]) {
+            const data = notifications[id];
+            document.getElementById('noteType').textContent = data.type;
+            document.getElementById('noteType').className = `${data.typeClass} text-xs font-bold px-2 py-1 rounded mr-2`;
+            document.getElementById('noteDate').textContent = data.date;
+            document.getElementById('noteTitle').textContent = data.title;
+            document.getElementById('noteContent').textContent = data.content;
+            document.getElementById('noteTime').textContent = data.time;
+            document.getElementById('noteLocation').textContent = data.location;
+        }
+    </script>
+
+</body>
+</html>

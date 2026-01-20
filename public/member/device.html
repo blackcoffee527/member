@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>设备与安全 - 社区康养中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-primary': '#ff6b00',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .sos-btn-shadow {
+            box-shadow: 0 0 0 10px rgba(239, 68, 68, 0.2), 0 0 0 20px rgba(239, 68, 68, 0.1);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .sos-active {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 pb-24">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10 flex items-center justify-between">
+        <a href="index.html" class="text-stone-600 p-2"><i class="fas fa-chevron-left text-xl"></i></a>
+        <h1 class="text-xl font-bold text-stone-800">设备与安全</h1>
+        <div class="w-8"></div>
+    </header>
+
+    <main class="p-4 space-y-8">
+
+        <!-- SOS 紧急呼救大按钮 -->
+        <div class="flex flex-col items-center justify-center py-6">
+            <div class="relative mb-6">
+                <button id="sosBtn" class="w-48 h-48 bg-red-600 rounded-full flex flex-col items-center justify-center shadow-2xl sos-btn-shadow sos-active active:scale-95 transition-transform">
+                    <i class="fas fa-bell text-6xl text-white mb-2"></i>
+                    <span class="text-2xl font-bold text-white">SOS</span>
+                    <span class="text-white/80 text-sm">长按 3 秒呼救</span>
+                </button>
+            </div>
+            <p class="text-stone-500 text-center text-sm px-8">点击上方按钮可直接接通紧急联系人或社区服务中心</p>
+        </div>
+
+        <!-- 紧急联系人 -->
+        <div class="card">
+            <h3 class="text-lg font-bold text-stone-800 mb-4 border-l-4 border-warm-primary pl-3">紧急联系人</h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3 text-orange-600">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-stone-800">李医生 (社区)</p>
+                            <p class="text-stone-500 text-sm">139****8888</p>
+                        </div>
+                    </div>
+                    <a href="tel:13900008888" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-3 text-amber-600">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-stone-800">张小明 (儿子)</p>
+                            <p class="text-stone-500 text-sm">138****9999</p>
+                        </div>
+                    </div>
+                    <a href="tel:13800009999" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设备列表 -->
+        <div class="card">
+            <h3 class="text-lg font-bold text-stone-800 mb-4 border-l-4 border-warm-primary pl-3">我的设备</h3>
+            
+            <div class="space-y-4">
+                <!-- 智能手环 -->
+                <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-watch text-2xl text-stone-400 mr-3"></i>
+                        <div>
+                            <p class="font-bold text-stone-800">智能手环</p>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-battery-three-quarters text-green-500 text-xs mr-1"></i>
+                                <span class="text-stone-500 text-xs">电量 75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-green-500 text-sm font-bold"><i class="fas fa-wifi mr-1"></i>在线</span>
+                </div>
+
+                <!-- 烟雾报警器 -->
+                <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-fire-extinguisher text-2xl text-stone-400 mr-3"></i>
+                        <div>
+                            <p class="font-bold text-stone-800">烟雾报警器</p>
+                            <div class="flex items-center mt-1">
+                                <span class="text-stone-500 text-xs">客厅</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-green-500 text-sm font-bold"><i class="fas fa-wifi mr-1"></i>正常</span>
+                </div>
+
+                <!-- 睡眠监测带 -->
+                <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-100 opacity-60">
+                    <div class="flex items-center">
+                        <i class="fas fa-bed text-2xl text-stone-400 mr-3"></i>
+                        <div>
+                            <p class="font-bold text-stone-800">睡眠监测带</p>
+                            <div class="flex items-center mt-1">
+                                <span class="text-stone-500 text-xs">卧室</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-stone-400 text-sm font-bold"><i class="fas fa-ban mr-1"></i>离线</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav flex justify-around items-center h-20 text-stone-400 relative">
+        <a href="index.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-home text-2xl mb-1"></i>
+            <span class="text-xs font-medium">首页</span>
+        </a>
+        <a href="care.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-calendar-alt text-2xl mb-1"></i>
+            <span class="text-xs font-medium">服务</span>
+        </a>
+
+        <!-- SOS 按钮占位 -->
+        <div class="w-full h-full relative">
+             <div class="nav-sos-container">
+                <a href="device.html" class="nav-sos-btn">
+                    <span class="font-bold text-lg">SOS</span>
+                </a>
+             </div>
+        </div>
+
+        <a href="orders.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-shopping-bag text-2xl mb-1"></i>
+            <span class="text-xs font-medium">商城</span>
+        </a>
+        <a href="health.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
+            <i class="fas fa-user text-2xl mb-1"></i>
+            <span class="text-xs font-medium">我的</span>
+        </a>
+    </nav>
+
+    <script>
+        // 模拟 SOS 按钮交互
+        const sosBtn = document.getElementById('sosBtn');
+        let pressTimer;
+
+        sosBtn.addEventListener('mousedown', startPress);
+        sosBtn.addEventListener('touchstart', startPress);
+
+        sosBtn.addEventListener('mouseup', endPress);
+        sosBtn.addEventListener('mouseleave', endPress);
+        sosBtn.addEventListener('touchend', endPress);
+
+        function startPress(e) {
+            e.preventDefault(); // 防止点击穿透
+            sosBtn.classList.add('scale-95');
+            // 3秒长按逻辑
+            pressTimer = setTimeout(() => {
+                alert('已触发紧急呼救！正在联系中心...');
+            }, 3000);
+        }
+
+        function endPress() {
+            sosBtn.classList.remove('scale-95');
+            clearTimeout(pressTimer);
+        }
+        
+        // 点击立即触发（简化版，适合老人可能按不住3秒）
+        sosBtn.addEventListener('click', () => {
+             // 可以在这里添加二次确认
+             if(confirm("是否立即呼叫紧急援助？")) {
+                 alert('呼叫已发出！');
+             }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<view class="container flex flex-col items-center" style="padding-top: 100rpx;">
+  <view class="mb-10 text-center">
+    <text class="text-3xl font-bold text-gray-800 block mb-2">紧急呼救</text>
+    <text class="text-gray-500 block">长按下方按钮 3 秒呼叫紧急联系人</text>
+  </view>
+
+  <view class="rounded-full flex items-center justify-center mb-10 shadow-lg relative" style="width: 300rpx; height: 300rpx; background: linear-gradient(135deg, #ef4444 0%, #f87171 100%); box-shadow: 0 0 0 20rpx rgba(239, 68, 68, 0.2);">
+    <text class="text-white font-bold" style="font-size: 80rpx;">SOS</text>
+  </view>
+
+  <view class="w-full card p-4">
+    <text class="font-bold text-gray-800 block mb-4 border-l-4 border-blue-500 pl-2">紧急联系人</text>
+    <view class="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
+        <view>
+            <text class="font-bold text-gray-800 block">张伟 (儿子)</text>
+            <text class="text-gray-500 text-sm block">13912345678</text>
+        </view>
+        <button class="bg-green-500 text-white px-4 py-2 rounded-full text-sm" style="width: auto; margin: 0;" bindtap="makeCall" data-phone="13912345678">拨打</button>
+    </view>
+    <view class="flex items-center justify-between">
+        <view>
+            <text class="font-bold text-gray-800 block">社区服务站</text>
+            <text class="text-gray-500 text-sm block">010-88888888</text>
+        </view>
+        <button class="bg-green-500 text-white px-4 py-2 rounded-full text-sm" style="width: auto; margin: 0;" bindtap="makeCall" data-phone="010-88888888">拨打</button>
+    </view>
+  </view>
+</view>
