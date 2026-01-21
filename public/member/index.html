@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>首页 - 社区康养中心</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -10,9 +10,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'sage-primary': '#ff6b00', // Update to warm orange
-                        'sage-light': '#ff8c42',
-                        'sage-bg': '#fff7ed', // Warm orange background
+                        'primary': '#ff6b00',
+                        'warm-bg': '#fffbf0',
+                        'text-main': '#4a3c31',
+                        'text-sub': '#8c7b70',
                     }
                 }
             }
@@ -21,146 +22,149 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="pb-24"> <!-- pb-24 防止内容被底部导航遮挡 -->
+<body>
 
-    <!-- 顶部欢迎栏 - 暖色调渐变背景 -->
-    <header class="bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 text-stone-800 p-6 rounded-b-3xl shadow-lg relative z-10 border-b-4 border-orange-100">
-        <!-- 1. 会员信息行 -->
-        <div class="flex justify-between items-center mb-6">
+    <!-- 顶部状态栏占位 -->
+    <div class="h-12 w-full"></div>
+
+    <!-- 头部：问候与状态 -->
+    <header class="px-6 mb-8 animate-entry">
+        <div class="flex justify-between items-end mb-6">
             <div>
-                <p class="text-lg opacity-80">下午好，</p>
-                <h1 class="text-3xl font-bold text-stone-900">张建国 爷爷</h1>
+                <p class="text-stone-500 text-lg mb-1">下午好</p>
+                <h1 class="text-4xl font-bold text-stone-800 tracking-tight">张建国 <span class="text-2xl font-normal text-stone-500">爷爷</span></h1>
             </div>
-            <a href="profile.html" class="w-14 h-14 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-orange-200 shadow-md cursor-pointer hover:shadow-lg transition-shadow">
-                <i class="fas fa-user text-orange-600 text-3xl"></i>
+            <a href="profile.html" class="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-sm">
+                <div class="w-full h-full bg-orange-100 flex items-center justify-center text-orange-400">
+                    <i class="fas fa-user text-3xl"></i>
+                </div>
             </a>
         </div>
-        
-        <div class="space-y-4">
-            <!-- 2. 天气卡片 (横向占满) -->
-            <div class="neumorphic-convex p-4 rounded-2xl bg-white/60 flex items-center">
-                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-sun text-amber-500 text-2xl"></i>
-                </div>
+
+        <!-- 天气与余额 - 并排大卡片 -->
+        <div class="flex space-x-4">
+            <!-- 天气 -->
+            <div class="senior-card flex-1 p-5 flex flex-col justify-between h-32 bg-gradient-to-br from-amber-50 to-white">
+                <i class="fas fa-sun text-3xl text-amber-400 mb-2"></i>
                 <div>
-                    <div class="flex items-baseline">
-                        <span class="text-2xl font-bold text-stone-800 mr-2">26°C</span>
-                        <span class="text-stone-600 font-medium">晴朗</span>
-                    </div>
-                    <p class="text-sm text-stone-500">微风 2级 | 适宜户外活动</p>
+                    <span class="text-3xl font-bold text-stone-800">26°</span>
+                    <span class="text-stone-500 text-sm ml-1">晴朗</span>
                 </div>
             </div>
-
-            <!-- 3. 账户余额卡片 (横向占满) -->
-            <div class="neumorphic-convex p-4 rounded-2xl bg-white/60 flex items-center justify-between">
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                        <i class="fas fa-wallet text-orange-600 text-2xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-sm text-stone-500">账户余额</p>
-                        <p class="text-2xl font-bold text-stone-800">¥ <span id="userBalance">1,250.00</span></p>
-                    </div>
+            
+            <!-- 余额 -->
+            <div class="senior-card flex-1 p-5 flex flex-col justify-between h-32 bg-gradient-to-br from-orange-50 to-white relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <i class="fas fa-wallet text-3xl text-orange-400"></i>
+                    <a href="#" class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-bold">充值</a>
                 </div>
-                <a href="#" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-bold hover:bg-orange-200 transition-colors">
-                    充值
-                </a>
+                <div>
+                    <span class="text-stone-500 text-xs block mb-1">余额</span>
+                    <span class="text-2xl font-bold text-stone-800">¥ 1,250</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- 主要内容区 -->
-    <main class="px-4 -mt-6 relative z-20">
+    <!-- 主要功能区 -->
+    <main class="px-6 pb-32 animate-entry delay-100">
         
-        <!-- 快捷功能网格 - Neumorphic 卡片 -->
-        <div class="grid grid-cols-2 gap-4 mb-6">
-            <a href="health.html" class="bg-white rounded-xl shadow-sm border border-stone-100 flex flex-col items-center justify-center py-6 cursor-pointer hover:shadow-md transition-shadow">
-                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-3 text-orange-500 shadow-sm">
+        <h2 class="text-xl font-bold text-stone-800 mb-4 ml-1">常用服务</h2>
+        
+        <!-- 大卡片网格 -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <!-- 健康档案 -->
+            <a href="health.html" class="senior-card p-4 flex flex-col items-center justify-center h-40">
+                <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-3 text-red-500">
                     <i class="fas fa-heartbeat text-3xl"></i>
                 </div>
-                <span class="text-xl font-bold text-stone-800">健康档案</span>
-                <span class="text-sm text-stone-500 mt-1">血压/血糖记录</span>
+                <span class="text-lg font-bold text-stone-800">健康档案</span>
             </a>
-            
-            <a href="care.html" class="bg-white rounded-xl shadow-sm border border-stone-100 flex flex-col items-center justify-center py-6 cursor-pointer hover:shadow-md transition-shadow">
-                <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-3 text-amber-500 shadow-sm">
+
+            <!-- 照护服务 -->
+            <a href="care.html" class="senior-card p-4 flex flex-col items-center justify-center h-40">
+                <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mb-3 text-amber-500">
                     <i class="fas fa-calendar-check text-3xl"></i>
                 </div>
-                <span class="text-xl font-bold text-stone-800">照护服务</span>
-                <span class="text-sm text-stone-500 mt-1">今日服务计划</span>
+                <span class="text-lg font-bold text-stone-800">照护服务</span>
             </a>
-            
-            <a href="orders.html" class="bg-white rounded-xl shadow-sm border border-stone-100 flex flex-col items-center justify-center py-6 cursor-pointer hover:shadow-md transition-shadow">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-3 text-red-500 shadow-sm">
+
+            <!-- 生活商城 -->
+            <a href="orders.html" class="senior-card p-4 flex flex-col items-center justify-center h-40">
+                <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-3 text-green-500">
                     <i class="fas fa-shopping-basket text-3xl"></i>
                 </div>
-                <span class="text-xl font-bold text-stone-800">生活商城</span>
-                <span class="text-sm text-stone-500 mt-1">送餐/买菜</span>
+                <span class="text-lg font-bold text-stone-800">生活商城</span>
             </a>
-            
-            <a href="device.html" class="bg-white rounded-xl shadow-sm border border-stone-100 flex flex-col items-center justify-center py-6 cursor-pointer hover:shadow-md transition-shadow">
-                <div class="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mb-3 text-stone-600 shadow-sm border border-orange-100">
-                    <i class="fas fa-shield-alt text-3xl text-orange-400"></i>
+
+            <!-- 安全设备 -->
+            <a href="device.html" class="senior-card p-4 flex flex-col items-center justify-center h-40">
+                <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-3 text-blue-500">
+                    <i class="fas fa-shield-alt text-3xl"></i>
                 </div>
-                <span class="text-xl font-bold text-stone-800">安全设备</span>
-                <span class="text-sm text-stone-500 mt-1">手环/报警器</span>
+                <span class="text-lg font-bold text-stone-800">安全设备</span>
             </a>
         </div>
 
-        <!-- 社区通知 - Neumorphic 卡片 -->
-        <div class="mb-6">
-            <div class="flex justify-between items-center mb-3 px-1">
-                <h3 class="text-xl font-bold text-stone-800 border-l-4 border-orange-400 pl-3">社区通知</h3>
-                <a href="notifications.html" class="text-stone-500">更多 ></a>
-            </div>
-            
-            <div class="card space-y-4">
-                <div class="flex items-start border-b border-stone-100 pb-3 cursor-pointer" onclick="window.location.href='notification-detail.html?id=1'">
-                    <div class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded mt-1 mr-3">重要</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-stone-800">免费体检通知</h4>
-                        <p class="text-stone-500 text-sm mt-1">本周六上午9点，社区医院为您提供免费...</p>
-                    </div>
+        <!-- 社区通知 - 列表式 -->
+        <div class="mb-4 flex justify-between items-end px-1">
+            <h2 class="text-xl font-bold text-stone-800">社区通知</h2>
+            <span class="text-stone-400 text-sm">最新消息</span>
+        </div>
+
+        <div class="space-y-4 animate-entry delay-200">
+            <!-- 通知项 -->
+            <div class="senior-card p-5 flex items-start" onclick="window.location.href='notification-detail.html?id=1'">
+                <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center text-red-500 mr-4 flex-shrink-0">
+                    <i class="fas fa-bullhorn text-xl"></i>
                 </div>
-                <div class="flex items-start cursor-pointer" onclick="window.location.href='notification-detail.html?id=2'">
-                    <div class="bg-amber-100 text-amber-600 text-xs font-bold px-2 py-1 rounded mt-1 mr-3">活动</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-stone-800">老年书法兴趣班开课啦</h4>
-                        <p class="text-stone-500 text-sm mt-1">欢迎各位书法爱好者报名参加...</p>
-                    </div>
+                <div class="flex-1">
+                    <h4 class="text-lg font-bold text-stone-800 mb-1">免费体检通知</h4>
+                    <p class="text-stone-500 text-sm line-clamp-1">本周六上午9点，社区医院为您提供...</p>
+                    <p class="text-stone-400 text-xs mt-2">今天 10:30</p>
+                </div>
+            </div>
+
+            <div class="senior-card p-5 flex items-start" onclick="window.location.href='notification-detail.html?id=2'">
+                <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-500 mr-4 flex-shrink-0">
+                    <i class="fas fa-paint-brush text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-lg font-bold text-stone-800 mb-1">书法兴趣班</h4>
+                    <p class="text-stone-500 text-sm line-clamp-1">欢迎报名参加，每周二下午...</p>
+                    <p class="text-stone-400 text-xs mt-2">昨天</p>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- 底部导航栏 - 柔和健康主题 -->
-    <nav class="bottom-nav flex justify-around items-center h-20 text-stone-400 relative">
-        <a href="index.html" class="nav-item active flex flex-col items-center justify-center w-full h-full">
-            <i class="fas fa-home text-2xl mb-1"></i>
-            <span class="text-xs font-medium">首页</span>
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
         </a>
-        <a href="care.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
-            <i class="fas fa-calendar-alt text-2xl mb-1"></i>
-            <span class="text-xs font-medium">服务</span>
+        <a href="care.html" class="nav-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>服务</span>
         </a>
-
-        <!-- SOS 按钮占位 -->
-        <div class="w-full h-full relative">
-             <div class="nav-sos-container">
-                <a href="device.html" class="nav-sos-btn">
-                    <span class="font-bold text-lg">SOS</span>
-                </a>
-             </div>
+        
+        <!-- 悬浮 SOS -->
+        <div class="relative w-20 flex justify-center">
+            <a href="device.html" class="sos-floating">
+                <i class="fas fa-bell text-2xl mb-1"></i>
+                <span>SOS</span>
+            </a>
         </div>
 
-        <a href="orders.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
-            <i class="fas fa-shopping-bag text-2xl mb-1"></i>
-            <span class="text-xs font-medium">商城</span>
+        <a href="orders.html" class="nav-item">
+            <i class="fas fa-shopping-bag"></i>
+            <span>商城</span>
         </a>
-        <a href="health.html" class="nav-item flex flex-col items-center justify-center w-full h-full">
-            <i class="fas fa-user text-2xl mb-1"></i>
-            <span class="text-xs font-medium">我的</span>
+        <a href="health.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>我的</span>
         </a>
     </nav>
 

@@ -1,118 +1,128 @@
-/* Global Styles */
+/* Warm & Essential Theme for Senior Care */
 :root {
-    --primary-color: #ff6b00;
-    --text-primary: #4a3c31; /* Warmer dark brown */
-    --bg-light: #fffbf0; /* Warm Ivory */
+    /* Color Palette - Warm & Organic */
+    --bg-warm: #fffbf0;      /* 暖米色背景 */
+    --surface-card: #ffffff; /* 卡片白 */
+    --primary-orange: #ff6b00;
+    --primary-text: #4a3c31; /* 深褐 */
+    --secondary-text: #8c7b70; /* 暖灰 */
+    
+    /* Spacing & Shapes */
+    --card-radius: 24px;     /* 更圆润的角 */
+    --btn-height: 64px;      /* 更易点击的高度 */
+    
+    /* Shadows - Soft & Diffused */
+    --shadow-soft: 0 8px 30px rgba(74, 60, 49, 0.06);
+    --shadow-pressed: 0 2px 10px rgba(74, 60, 49, 0.04);
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--bg-warm);
+    color: var(--primary-text);
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    /* Safe Area */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    line-height: 1.6; /* 增加行高，提升可读性 */
 }
 
-/* Bottom Navigation */
+/* Animations */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-entry {
+    animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0; /* Initial state */
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* Components */
+.senior-card {
+    background: var(--surface-card);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 107, 0, 0.05); /* 微弱的橙色边框 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.senior-card:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-pressed);
+    background: #fff8f2; /* 点击时的暖色反馈 */
+}
+
+/* Bottom Nav - Simplified */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #ffffff;
-    border-top: 1px solid #eeeeee;
-    padding-bottom: env(safe-area-inset-bottom);
-    z-index: 50;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-}
-
-.nav-sos-container {
-    width: 100%;
-    height: 100%;
+    height: 96px; /* 更高，容错率更好 */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0,0,0,0.03);
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 16px;
+    z-index: 50;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
 }
 
-.nav-sos-btn {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--secondary-text);
+    text-decoration: none;
+    width: 60px;
+}
+
+.nav-item.active {
+    color: var(--primary-orange);
+    font-weight: bold;
+}
+
+.nav-item i {
+    font-size: 28px; /* 更大的图标 */
+    margin-bottom: 4px;
+}
+
+.nav-item span {
+    font-size: 13px; /* 更清晰的文字 */
+}
+
+/* SOS Button - Distinctive but integrated */
+.sos-floating {
+    width: 76px;
+    height: 76px;
+    background: #ff4d4d;
     border-radius: 50%;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
-    border: 4px solid #fff;
-    animation: pulse-glow 2s infinite;
-    text-decoration: none;
-    margin-top: 0; /* Align with other icons */
+    box-shadow: 0 10px 20px rgba(255, 77, 77, 0.3);
+    border: 6px solid var(--bg-warm);
+    transform: translateY(-30px);
 }
 
-@keyframes pulse-glow {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-
-.nav-sos-btn span {
-    font-size: 14px;
-    font-weight: 700;
-}
-
-/* Shop Layout */
-.shop-container {
-    display: flex;
-    height: calc(100vh - 140px);
-    overflow: hidden;
-}
-
-.shop-sidebar {
-    width: 90px;
-    background: #ffffff;
-    border-right: 1px solid #eeeeee;
-    overflow-y: auto;
-    flex-shrink: 0;
-}
-
-.shop-sidebar-item {
-    padding: 16px 8px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--text-primary);
-    border-bottom: 1px solid #eeeeee;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.shop-sidebar-item.active {
-    background: rgba(255, 107, 0, 0.1);
-    color: var(--primary-color);
-    font-weight: bold;
-    border-left: 3px solid var(--primary-color);
-}
-
-.shop-content {
-    flex: 1;
-    background: transparent;
-    overflow-y: auto;
-    padding: 16px;
-}
-
-/* Cart Bar */
-.cart-bar {
-    position: fixed;
-    bottom: 85px;
-    left: 16px;
-    right: 16px;
-    background: #333333;
-    border-radius: 24px;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 40;
+.sos-floating span {
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
